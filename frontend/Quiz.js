@@ -1,21 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Switch, Button } from 'react-native';
+import { View, Text, TextInput, CheckBox, Button } from 'react-native';
 
 const QuizPage = () => {
   const [healthCondition, setHealthCondition] = useState('');
-  const [vegan, setVegan] = useState(false);
-  const [vegetarian, setVegetarian] = useState(false);
-  const [glutenFree, setGlutenFree] = useState(false);
-  const [dairyFree, setDairyFree] = useState(false);
+  const [dietaryPreferences, setDietaryPreferences] = useState({
+    vegan: false,
+    vegetarian: false,
+    glutenFree: false,
+    dairyFree: false,
+  });
+
+  const handleConditionChange = (value) => {
+    setHealthCondition(value);
+  };
+
+  const handleDietaryChange = (name, value) => {
+    setDietaryPreferences({
+      dietaryPreferences,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = () => {
     console.log('Submitted Health Condition:', healthCondition);
-    console.log('Submitted Dietary Preferences:', {
-      vegan,
-      vegetarian,
-      glutenFree,
-      dairyFree,
-    });
+    console.log('Submitted Dietary Preferences:', dietaryPreferences);
     // Here, you would typically send this data to your backend or state management store
   };
 
@@ -26,36 +34,36 @@ const QuizPage = () => {
         <Text>Health Condition:</Text>
         <TextInput
           value={healthCondition}
-          onChangeText={setHealthCondition}
+          onChangeText={handleConditionChange}
         />
       </View>
       <View>
         <Text>Dietary Preferences:</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Switch
-            value={vegan}
-            onValueChange={setVegan}
+        <View>
+          <CheckBox
+            value={dietaryPreferences.vegan}
+            onValueChange={(value) => handleDietaryChange('vegan', value)}
           />
           <Text>Vegan</Text>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Switch
-            value={vegetarian}
-            onValueChange={setVegetarian}
+        <View>
+          <CheckBox
+            value={dietaryPreferences.vegetarian}
+            onValueChange={(value) => handleDietaryChange('vegetarian', value)}
           />
           <Text>Vegetarian</Text>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Switch
-            value={glutenFree}
-            onValueChange={setGlutenFree}
+        <View>
+          <CheckBox
+            value={dietaryPreferences.glutenFree}
+            onValueChange={(value) => handleDietaryChange('glutenFree', value)}
           />
           <Text>Gluten-Free</Text>
         </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Switch
-            value={dairyFree}
-            onValueChange={setDairyFree}
+        <View>
+          <CheckBox
+            value={dietaryPreferences.dairyFree}
+            onValueChange={(value) => handleDietaryChange('dairyFree', value)}
           />
           <Text>Dairy-Free</Text>
         </View>
