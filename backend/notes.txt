@@ -1,5 +1,6 @@
 disease-cuisine-food
 mongodb+srv://shreema_v:VP8R5qMZ0C2SQF1m@disease-cuisine-food.xgh0zuq.mongodb.net/
+mongodb+srv://shreema_v:VP8R5qMZ0C2SQF1m@disease-cuisine-food.xgh0zuq.mongodb.net/
 
 DATABASES = {
     'default': {
