@@ -38,10 +38,10 @@ const QuizPage = () => {
 
     return (
         <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-            <Text style={styles.heading}>Tell us about your health and preferences</Text>
+            <Text style={[styles.heading, { fontFamily: 'ColorTube-Regular' }]}>Tell us about your health and preferences</Text>
             {questions.map(question => (
                 <View key={question.id} style={styles.questionContainer}>
-                    <Text style={styles.question}>{question.question}</Text>
+                    <Text style={[styles.question, { fontFamily: 'ColorTube-Regular' }]}>{question.question}</Text>
                     <View style={styles.buttonContainer}>
                         {question.options.map(option => (
                             <TouchableOpacity
@@ -49,16 +49,16 @@ const QuizPage = () => {
                                 style={[styles.button, selectedOptions[question.id] === option && styles.selectedButton]}
                                 onPress={() => handleAnswerSelection(question.id, option)}
                             >
-                                <Text style={styles.buttonText}>{option}</Text>
+                                <Text style={[styles.buttonText, { fontFamily: 'ColorTube-Regular' }]}>{option}</Text>
                             </TouchableOpacity>
                         ))}
                     </View>
                 </View>
             ))}
             <View style={styles.textInputContainer}>
-                <Text style={styles.label}>Health Condition:</Text>
+                <Text style={[styles.label, { fontFamily: 'ColorTube-Regular' }]}>Health Condition:</Text>
                 <TextInput
-                    style={styles.input}
+                    style={[styles.input, { fontFamily: 'ColorTube-Regular' }]}
                     value={healthCondition}
                     onChangeText={setHealthCondition}
                 />
@@ -72,12 +72,15 @@ const styles = StyleSheet.create({
     container: {
         padding: 20,
         backgroundColor: '#A1e3a1',
+                fontFamily: "Poppins", Helvetica,
+
     },
     heading: {
         fontSize: 18,
         marginBottom: 20,
         color: "#000000",
         textAlign: 'center',
+        fontFamily: "Poppins", Helvetica,
     },
     questionContainer: {
         marginBottom: 20,
@@ -86,6 +89,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 10,
         color: "#000000",
+        fontFamily: "Poppins", Helvetica,
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -105,11 +109,13 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         color: '#333333',
+        fontFamily: "Poppins", Helvetica,
     },
     label: {
         fontSize: 16,
         marginBottom: 5,
         color: "#000000",
+        fontFamily: "Poppins", Helvetica,
     },
     input: {
         height: 40,
@@ -118,6 +124,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         padding: 10,
         backgroundColor: "#ffffff",
+        fontFamily: "Poppins", Helvetica,
     },
 });
 

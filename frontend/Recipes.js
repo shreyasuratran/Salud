@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const Recipes = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [recipes, setRecipes] = useState([]);
+    const navigation = useNavigation(); // Use the useNavigation hook to access navigation
 
-    // Function to handle recipe search
     const handleSearch = () => {
         // Implement recipe search functionality here
-        // Update recipes state with the search results
     };
 
-    // Function to handle category selection
     const handleCategorySelection = (category) => {
         // Implement category selection functionality here
-        // Update recipes state with recipes in the selected category
     };
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <Text>Back</Text>
+            </TouchableOpacity>
             <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.searchInput}
@@ -40,6 +41,9 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         backgroundColor: '#A1e3a1',
+    },
+    backButton: {
+        marginBottom: 20, // Add space below the back button
     },
     searchContainer: {
         flexDirection: 'row',
