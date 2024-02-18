@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Button, Alert, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font'; // Import useFonts from expo-font
 
 // Dummy data for ingredients
 const dummyIngredients = {
@@ -36,6 +37,9 @@ const dummyIngredients = {
 };
 
 const Ingredients = () => {
+    const [loaded] = useFonts({
+        'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'), // Load Poppins-Regular font
+    });
     const route = useRoute();
     const { recipeId } = route.params;
     const recipe = dummyIngredients[recipeId];
@@ -71,6 +75,8 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: 'bold',
+        fontFamily: 'Poppins-Regular',
+
         marginBottom: 30, // Increased bottom margin for more space below the title
         color: '#000000',
         textAlign: 'center',
@@ -81,6 +87,8 @@ const styles = StyleSheet.create({
     ingredient: {
         backgroundColor: '#ffffff', // White background for each ingredient card
         fontSize: 18,
+        fontFamily: 'Poppins-Regular',
+
         color: '#000000',
         padding: 15, // Generous padding inside each ingredient card
         borderRadius: 10, // Rounded corners for the cards
@@ -109,6 +117,8 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#FFFFFF', // White text color for better contrast
         fontSize: 18, // Slightly larger font size
+        fontFamily: 'Poppins-Regular',
+
         fontWeight: 'bold', // Bold font weight
         textAlign: 'center', // Ensure text is centered
     },

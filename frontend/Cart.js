@@ -1,88 +1,114 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { useFonts } from 'expo-font'; // Import useFonts from expo-font
+
+const initialCartItems = [
+    { id: '1', name: 'Spaghetti (200g)'},
+    { id: '2', name: 'Bacon (100g)'},
+    { id: '3', name: 'Eggs (2pc)'},
+    { id: '4', name: 'Parmesan Cheese (50g)'},
+];
 
 const Cart = () => {
-    // Dummy data for cart items
-    const cartItems = [
-        { id: '1', name: 'Spaghetti (200g)', quantity: '$$$'},
-        { id: '2', name: 'Bacon (100g)', quantity: '$$$' },
-        { id: '3', name: 'Eggs (2pc)', quantity: '$$$' },
-        { id: '4', name: 'Parmesan Cheese (50g)', quantity: '$$$' },
-    ];
+    const [cartItems, setCartItems] = useState(initialCartItems);
+    const [loaded] = useFonts({
+        'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'), // Load Poppins-Regular font
+    });    
+    const handleRemoveItem = (id) => {
+        setCartItems(cartItems.filter(item => item.id !== id));
+    };
+
+    const handleCheckout = () => {
+        // Here you would typically navigate to a checkout screen or perform a checkout action
+        console.log('Proceeding to checkout...');
+    };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Your Cart</Text>
             <FlatList
                 data={cartItems}
                 keyExtractor={item => item.id}
                 renderItem={({ item }) => (
                     <View style={styles.itemContainer}>
                         <Text style={styles.itemName}>{item.name}</Text>
-                        <Text style={styles.itemQuantity}>{item.quantity}</Text>
+                        <TouchableOpacity onPress={() => handleRemoveItem(item.id)} style={styles.removeItemButton}>
+                            <Text style={styles.removeItemButtonText}>Remove</Text>
+                        </TouchableOpacity>
                     </View>
                 )}
             />
+            <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
+                <Text style={styles.checkoutButtonText}>Checkout</Text>
+            </TouchableOpacity>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fbf0df', // Soft beige background for warmth
-        padding: 20, // Generous padding for breathing space
+    removeItemButton: {
+        backgroundColor: '#ff6347', // Bright color for visibility
+        paddingHorizontal: 15, // Increased padding for a wider button
+        paddingVertical: 8, // Slightly taller button for easier interaction
+        borderRadius: 15, // More pronounced rounded corners for a modern look
+        marginLeft: 10, // Space from the quantity or item name
+        shadowColor: '#000', // Shadow for depth
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.22,
+        fontFamily: 'Poppins-Regular',
+
+        shadowRadius: 2.22,
+        elevation: 3, // Elevation for Android
     },
-    title: {
-        fontSize: 26, // Slightly larger for emphasis
+    removeItemButtonText: {
+        color: '#FFFFFF',
+        fontSize: 16, // Slightly larger for better readability
         fontWeight: 'bold',
-        marginBottom: 30, // More space below the title
-        color: '#333', // Darker for contrast
-        textAlign: 'center',
+        fontFamily: 'Poppins-Regular',
+
     },
+    checkoutButton: {
+        marginTop: 20,
+        backgroundColor: '#4CA14C', // Vibrant color for the action
+        paddingVertical: 15, // More padding for a taller button
+        borderRadius: 30, // Fully rounded edges for a soft, friendly touch
+        alignItems: 'center',
+        justifyContent: 'center',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        marginHorizontal: 20, // Ensure some space from screen edges
+    },
+    checkoutButtonText: {
+        color: '#FFFFFF',
+        fontFamily: 'Poppins-Regular',
+        fontSize: 22, // More prominent size for the call to action
+        fontWeight: 'bold',
+    },
+    // Assuming there are more styles for itemContainer, itemName, and itemQuantity
     itemContainer: {
-        backgroundColor: '#ffffff', // Card-like appearance
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingVertical: 15, // More vertical padding for touch targets
-        paddingHorizontal: 20, // More horizontal padding for content breathing room
-        borderRadius: 10, // Rounded corners for a modern look
-        shadowColor: '#000', // Shadow for depth
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1, // Light shadow for subtlety
-        shadowRadius: 4,
-        elevation: 3, // Elevation for Android
-        marginBottom: 15, // Space between items
+        padding: 20, // Increased padding for more space inside each item
+        backgroundColor: '#ffffff', // Keeping the card-like appearance
+        borderRadius: 20, // More pronounced rounded corners
+        marginVertical: 10, // Space between items
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2,
     },
     itemName: {
         fontSize: 20, // Larger font size for readability
         color: '#000000',
-        fontWeight: '500', // Medium weight for importance
+        fontWeight: '500',
+        fontFamily: 'Poppins-Regular',
+        flexShrink: 1, // Ensure text fits within the available space
     },
-    itemQuantity: {
-        fontSize: 18, // Uniform font size with the name for consistency
-        color: '#666666', // Grey for less emphasis
-        fontWeight: 'bold', // Bold to denote quantity clearly
-    },
-    checkoutButton: {
-        marginTop: 20,
-        backgroundColor: '#4CA14C', // A vibrant color for the checkout action
-        paddingVertical: 12,
-        borderRadius: 25, // Fully rounded edges for a friendly touch
-        alignItems: 'center',
-        justifyContent: 'center',
-        shadowColor: '#000', // Shadow for button depth
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 4, // Elevation for Android
-    },
-    checkoutButtonText: {
-        color: '#FFFFFF',
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
+    
 });
 
 

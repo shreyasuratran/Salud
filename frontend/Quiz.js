@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
+import { useFonts } from 'expo-font'; // Import useFonts from expo-font
 
 const QuizPage = () => {
     const [healthCondition, setHealthCondition] = useState('');
     const [selectedOptions, setSelectedOptions] = useState({});
     const navigation = useNavigation(); // Use the useNavigation hook to access navigation
+    const [loaded] = useFonts({
+        'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'), // Load Poppins-Regular font
+    });
 
     const questions = [
         { id: 1, question: 'What is your age group?', options: ['18-24', '25-34', '35-44', '45-54', '55+'] },
@@ -74,6 +78,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fbf0df', // Beige type color
     },
     heading: {
+        fontFamily: 'Poppins-Regular',
         fontSize: 24, // Increased font size
         marginBottom: 20,
         color: "#000000",
@@ -95,6 +100,7 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     question: {
+        fontFamily: 'Poppins-Regular',
         fontSize: 18, // Slightly larger font for questions
         marginBottom: 10,
         color: "#000000",
@@ -127,6 +133,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF', // White text color when selected
     },
     buttonText: {
+        fontFamily: 'Poppins-Regular',
         fontSize: 16,
         color: '#000000',
         textAlign: 'center', // Ensure text is centered within the button

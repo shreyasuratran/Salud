@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useFonts } from 'expo-font'; // Import useFonts from expo-font
 
 const dummyRecipes = [
   {
@@ -22,6 +23,9 @@ const dummyRecipes = [
 ];
 
 const Recipes = () => {
+    const [loaded] = useFonts({
+        'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'), // Load Poppins-Regular font
+    });
     const [searchQuery, setSearchQuery] = useState('');
     const [recipes, setRecipes] = useState(dummyRecipes);
     const navigation = useNavigation();
@@ -96,6 +100,7 @@ const styles = StyleSheet.create({
         fontSize: 20, // Larger font size for titles
         fontWeight: 'bold', // Bold font weight for titles
         color: '#333333', // Darker text for better contrast
+        fontFamily: 'Poppins-Regular',
         marginBottom: 5, // Space between title and description
     },
     backButton: {
