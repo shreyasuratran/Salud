@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 450,
+    height: 450,
     resizeMode: 'contain',
   },
   button: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#A1e3a1',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
