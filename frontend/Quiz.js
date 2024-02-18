@@ -11,12 +11,17 @@ const QuizPage = () => {
         'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'), // Load Poppins-Regular font
     });
 
+    const yesNoQuestionIdToDiseaseMapping = {
+        3: 'disease_diabetes_id',
+        4: 'disease_hypertension_id',
+        5: 'disease_hypoglycemic_id',
+    };
     const questions = [
         { id: 1, question: 'What is your age group?', options: ['18-24', '25-34', '35-44', '45-54', '55+'] },
         { id: 2, question: 'What is your gender?', options: ['Male', 'Female', 'Other'] },
         { id: 3, question: 'Do you have diabetes?', options: ['Yes', 'No'] },
         { id: 4, question: 'Do you have hypertension (high blood pressure)?', options: ['Yes', 'No'] },
-        { id: 5, question: 'Are you allergic to any specific foods?', options: ['Yes', 'No'] },
+        { id: 5, question: 'Are you hypoglycemic?', options: ['Yes', 'No'] },
         { id: 6, question: 'Do you have any dietary restrictions or preferences?', options: ['Vegetarian', 'Vegan', 'Gluten-free', 'Other'] },
         { id: 7, question: 'Are there specific ingredients you dislike or cannot consume?', options: ['Yes', 'No'] },
         { id: 8, question: 'Are there specific cuisines you prefer?', options: ['Italian', 'Asian', 'Mediterranean', 'Other'] },
@@ -29,37 +34,58 @@ const QuizPage = () => {
     const handleSubmit = () => {
         console.log('Submitted Health Condition:', healthCondition);
         console.log('Submitted Answers:', selectedOptions);
-        // Navigate to Recipes page
-        navigation.navigate('Recipes'); // Replace 'Recipes' with the exact route name you have defined in your navigator
+        navigation.navigate('Recipes');
     };
 
     const handleAnswerSelection = (questionId, option) => {
-        setSelectedOptions(prevState => ({
-            ...prevState,
-            [questionId]: option,
-        }));
+        const yesNoQuestionIdToDiseaseMapping = {
+            3: 'disease_diabetes_id',
+            4: 'disease_hypertension_id',
+            5: 'disease_hypoglycemic_id',
+        };
+
+        if (yesNoQuestionIdToDiseaseMapping.hasOwnProperty(questionId)) {
+            const diseaseId = yesNoQuestionIdToDiseaseMapping[questionId];
+            setSelectedOptions(prevState => ({
+                ...prevState,
+                [diseaseId]: option === "Yes", // This correctly updates the state for Yes/No answers.
+            }));
+        } else {
+            const genericId = `question_${questionId}_${option.toLowerCase().replace(/\s+/g, '_')}_id`;
+            setSelectedOptions(prevState => ({
+                ...prevState,
+                [genericId]: true, // This sets the state for non Yes/No questions.
+            }));
+        }
     };
 
     return (
         <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
-            <Text style={styles.heading}>Tell us about your health and preferences</Text>
+            {/* UI rendering code remains unchanged */}
             {questions.map(question => (
-                <View key={question.id} style={styles.questionContainer}>
-                    <Text style={styles.question}>{question.question}</Text>
-                    <View style={styles.buttonContainer}>
-                        {question.options.map(option => (
-                            <TouchableOpacity
-                                key={option}
-                                style={[styles.button, selectedOptions[question.id] === option && styles.selectedButton]}
-                                onPress={() => handleAnswerSelection(question.id, option)}
-                            >
-                                <Text style={styles.buttonText}>{option}</Text>
-                            </TouchableOpacity>
-                        ))}
-                    </View>
-                </View>
-            ))}
-            <View style={styles.textInputContainer}>
+    <View key={question.id} style={styles.questionContainer}>
+        <Text style={styles.question}>{question.question}</Text>
+        <View style={styles.buttonContainer}>
+            {question.options.map(option => {
+                const isSelected = selectedOptions[yesNoQuestionIdToDiseaseMapping[question.id]] === (option === "Yes") ||
+                                   selectedOptions[`question_${question.id}_${option.toLowerCase().replace(/\s+/g, '_')}_id`];
+                return (
+                    <TouchableOpacity
+                        key={option}
+                        style={[
+                            styles.button,
+                            isSelected ? styles.selectedButton : null
+                        ]}
+                        onPress={() => handleAnswerSelection(question.id, option)}
+                    >
+                        <Text style={styles.buttonText}>{option}</Text>
+                    </TouchableOpacity>
+                );
+            })}
+        </View>
+    </View>
+))}
+           <View style={styles.textInputContainer}>
                 <Text style={styles.label}>Health Condition:</Text>
                 <TextInput
                     style={styles.input}
