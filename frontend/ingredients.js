@@ -22,6 +22,15 @@ const dummyIngredients = {
       { name: 'Heavy Cream', quantity: '100ml' },
       { name: 'Parmesan Cheese', quantity: '50g' },
     ],
+},
+    '3': {
+        title: 'Vegetable Stir Fry',
+        ingredients: [
+          { name: 'Pasta', quantity: '200g' },
+          { name: 'Chicken Breast', quantity: '150g' },
+          { name: 'Heavy Cream', quantity: '100ml' },
+          { name: 'Parmesan Cheese', quantity: '50g' },
+        ],
   },
   // Add more recipes as needed
 };
@@ -53,40 +62,55 @@ const Ingredients = () => {
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#fbf0df',
-        padding: 20,
+        backgroundColor: '#fbf0df', // Soft beige background
+        padding: 20, // Outer padding for the overall layout
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginBottom: 30, // Increased bottom margin for more space below the title
         color: '#000000',
         textAlign: 'center',
     },
     ingredientsList: {
-        marginBottom: 20,
+        alignSelf: 'stretch', // Ensure the list takes the full available width
     },
     ingredient: {
+        backgroundColor: '#ffffff', // White background for each ingredient card
         fontSize: 18,
         color: '#000000',
-        margin: 5,
+        padding: 15, // Generous padding inside each ingredient card
+        borderRadius: 10, // Rounded corners for the cards
+        marginVertical: 8, // Space between cards
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3, // Elevation for Android (shadow effect)
+        flexDirection: 'row', // For future customization (e.g., icons next to ingredients)
+        justifyContent: 'space-between', // Align items on opposite ends
     },
     button: {
-        backgroundColor: '#FFFFFF', // Button background color
-        padding: 10,
-        borderRadius: 5,
+        backgroundColor: '#4CA14C', // Vibrant green background for the button
+        paddingVertical: 12, // More vertical padding for a taller button
+        paddingHorizontal: 20, // Horizontal padding
+        borderRadius: 25, // Fully rounded corners
+        marginTop: 20, // Space above the button
+        alignSelf: 'center', // Center the button horizontally
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+        elevation: 4, // Elevation for Android (shadow effect)
     },
     buttonText: {
-        color: '#FFFFFF', // Here we set the text color to white
-        fontWeight: 'bolder',
-
-        fontSize: 16,
+        color: '#FFFFFF', // White text color for better contrast
+        fontSize: 18, // Slightly larger font size
+        fontWeight: 'bold', // Bold font weight
+        textAlign: 'center', // Ensure text is centered
     },
 });
 

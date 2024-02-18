@@ -71,56 +71,79 @@ const QuizPage = () => {
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        backgroundColor: '#fbf0df', //beige type color
+        backgroundColor: '#fbf0df', // Beige type color
     },
     heading: {
-        fontSize: 18,
+        fontSize: 24, // Increased font size
         marginBottom: 20,
         color: "#000000",
         textAlign: 'center',
+        fontWeight: 'bold', // Make the heading stand out
     },
     questionContainer: {
         marginBottom: 20,
+        padding: 10, // Add padding to give more space
+        backgroundColor: '#ffffff', // Light background for the question container
+        borderRadius: 10, // Rounded corners for the container
+        shadowColor: "#000", // Shadow for depth
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     question: {
-        fontSize: 16,
+        fontSize: 18, // Slightly larger font for questions
         marginBottom: 10,
         color: "#000000",
         textAlign: 'center',
-
+        lineHeight: 24, // Increased line height for better readability
     },
     buttonContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
+        marginTop: 10, // Add space above the button container
     },
     button: {
         backgroundColor: '#A1e3a1',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        borderRadius: 5,
+        paddingVertical: 12, // Increased padding for a taller button
+        paddingHorizontal: 25, // Wider buttons for easier tapping
+        borderRadius: 20, // More rounded corners
         margin: 5,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2,
     },
     selectedButton: {
-        backgroundColor: '#4CA14C', // Corrected color code
+        backgroundColor: '#4CA14C', // A more vibrant color for selected state
+        color: '#FFFFFF', // White text color when selected
     },
     buttonText: {
         fontSize: 16,
-        color: '#000000', // Default text color
+        color: '#000000',
+        textAlign: 'center', // Ensure text is centered within the button
     },
-  
     label: {
-        fontSize: 16,
+        fontSize: 18, // Larger label size
         marginBottom: 5,
         color: "#000000",
     },
     input: {
-        height: 40,
-        borderColor: 'white',
+        height: 50, // Taller input for easier interaction
+        borderColor: '#cccccc', // A more visible border color
         borderWidth: 1,
         marginBottom: 15,
-        padding: 10,
+        padding: 15, // More padding for text input
         backgroundColor: "#ffffff",
+        borderRadius: 10, // Rounded corners for input field
     },
 });
 

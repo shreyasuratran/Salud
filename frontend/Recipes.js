@@ -70,39 +70,68 @@ const Recipes = () => {
 };
 
 const styles = StyleSheet.create({
-    recipeItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 10,
-        borderBottomWidth: 1,
-        borderBottomColor: '#ccc',
-        marginBottom: 10,
-    },
-    recipeTextContainer: {
-        flex: 1,
-    },
-    recipeTitle: {
-        fontSize: 18,
-    },
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#fbf0df',
+        backgroundColor: '#fbf0df', // Soft beige background
+    },
+    recipeItem: {
+        backgroundColor: '#ffffff', // White background for the card
+        borderRadius: 8, // Rounded corners for the card
+        marginVertical: 8,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 3, // Elevation for Android
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 15, // Increased padding for a spacious look
+    },
+    recipeTextContainer: {
+        flex: 1,
+        marginLeft: 10, // Space between image and text
+    },
+    recipeTitle: {
+        fontSize: 20, // Larger font size for titles
+        fontWeight: 'bold', // Bold font weight for titles
+        color: '#333333', // Darker text for better contrast
+        marginBottom: 5, // Space between title and description
     },
     backButton: {
-        marginBottom: 20,
+        width: 100, // Set the width to make the button smaller
+        height: 40, // Set the height to make the button smaller
+        justifyContent: 'center', // Center the text or icon inside the button vertically
+        alignItems: 'center', // Center the text or icon inside the button horizontally
+        backgroundColor: '#A1e3a1', // Soft green background
+        borderRadius: 20, // Rounded corners
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
+        elevation: 2,
+        alignSelf: 'flex-start', // Align the button to the left side of its container
+        marginBottom: 20, // Margin at the bottom
     },
+    
     searchContainer: {
         flexDirection: 'row',
         marginBottom: 20,
+        backgroundColor: '#ffffff', // White background for search container
+        borderRadius: 20, // Rounded corners for search container
+        padding: 8, // Padding inside the search container
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.1,
+        shadowRadius: 2,
+        elevation: 2,
     },
     searchInput: {
         flex: 1,
         marginRight: 10,
-        paddingHorizontal: 10,
-        paddingVertical: 8,
-        backgroundColor: '#ffffff',
-        borderRadius: 5,
+        backgroundColor: '#ffffff', // Ensure the input background matches the container
+        borderRadius: 20, // Rounded corners for input
+        paddingHorizontal: 15, // Horizontal padding for input text
     },
     recipesContainer: {
         flexGrow: 1,
