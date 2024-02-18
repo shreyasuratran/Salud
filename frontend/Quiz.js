@@ -71,7 +71,7 @@ const QuizPage = () => {
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        backgroundColor: '#A1e3a1',
+        backgroundColor: '#fbf0df', //beige type color
     },
     heading: {
         fontSize: 18,
@@ -86,6 +86,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginBottom: 10,
         color: "#000000",
+        textAlign: 'center',
+
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -93,19 +95,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     button: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#A1e3a1',
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderRadius: 5,
         margin: 5,
     },
     selectedButton: {
-        backgroundColor: '#5cb85c',
+        backgroundColor: '#4CA14C', // Corrected color code
     },
     buttonText: {
         fontSize: 16,
-        color: '#333333',
+        color: '#000000', // Default text color
     },
+  
     label: {
         fontSize: 16,
         marginBottom: 5,
