@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#A1E3A1',
+    backgroundColor: '#fbf0df',
   },
   logoContainer: {
     marginBottom: 20,
