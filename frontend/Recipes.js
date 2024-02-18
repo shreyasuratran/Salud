@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useFonts } from 'expo-font'; // Import useFonts from expo-font
 import logoImage from './salud.png';
+import axios from 'axios';
 
 const dummyRecipes = [
   {
@@ -28,8 +29,19 @@ const Recipes = () => {
         'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'), // Load Poppins-Regular font
     });
     const [searchQuery, setSearchQuery] = useState('');
-    const [recipes, setRecipes] = useState(dummyRecipes);
+    const [recipes, setRecipes] = useState({});
     const navigation = useNavigation();
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/recipes/getrecipes/')
+        .then(response => {
+            setData(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    }, []);
+ 
 
     const handleSearch = () => {
         if (searchQuery.trim() === '') {
