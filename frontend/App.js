@@ -1,33 +1,12 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import Quiz from './Quiz'; // Import Quiz.js
+import { StyleSheet, Text, View } from 'react-native';
 
-const Stack = createStackNavigator();
-
-function HomeScreen({ navigation }) {
+export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Quiz"
-        onPress={() => navigation.navigate('Quiz')}
-      />
+      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
     </View>
-  );
-}
-
-function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Quiz" component={Quiz} />
-      </Stack.Navigator>
-    </NavigationContainer>
   );
 }
 
@@ -39,5 +18,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-export default App;
