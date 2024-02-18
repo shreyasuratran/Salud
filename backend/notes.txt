@@ -1,0 +1,13 @@
+disease-cuisine-food
+mongodb+srv://shreema_v:VP8R5qMZ0C2SQF1m@disease-cuisine-food.xgh0zuq.mongodb.net/
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'ENFORCE_SCHEMA': False,
+        'NAME': 'disease-cuisine-food',  # Replace with your MongoDB database name
+        'CLIENT': {
+            'host': 'mongodb+srv://shreema_v:VP8R5qMZ0C2SQF1m@disease-cuisine-food.xgh0zuq.mongodb.net/',  # Replace with your MongoDB server's URI
+        }
+    }
+}
