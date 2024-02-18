@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook
 
 const QuizPage = () => {
     const [healthCondition, setHealthCondition] = useState('');
     const [selectedOptions, setSelectedOptions] = useState({});
-    const navigation = useNavigation(); // Get navigation object
 
     const questions = [
         { id: 1, question: 'What is your age group?', options: ['18-24', '25-34', '35-44', '45-54', '55+'] },
@@ -25,8 +23,7 @@ const QuizPage = () => {
     const handleSubmit = () => {
         console.log('Submitted Health Condition:', healthCondition);
         console.log('Submitted Answers:', selectedOptions);
-        // Navigate to Recipes page
-        navigation.navigate('Recipes');
+        // Here, you would typically send this data to your backend or state management store
     };
 
     const handleAnswerSelection = (questionId, option) => {
